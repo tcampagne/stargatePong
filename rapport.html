@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>StargatePong - Rapport</title>
+        <meta charset="UTF-8">
+        <link rel="SHORTCUT ICON" href="./rapport/images/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link  href="./rapport/css/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <link  href="./rapport/css/bootstrap/fonts/fontAwesome/css/font-awesome.min.css" rel="stylesheet"/>
+        <link  href="./rapport/css/style.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <!--LIBRAIRIES-->
+        <script src="./src/lib/build/three.min.js"></script>
+        <script src="./src/lib/build/dat.gui.js"></script>
+        <script src="./src/lib/build/OrbitControls.js"></script>
+        <script src="./src/lib/build/stats.min.js"></script>
+        <script src="./src/lib/build/Detector.js"></script>
+        <script src="./src/lib/build/water-material.js"></script>
+        <script src="./src/lib/howler.js"></script>
+        <script src="./src/lib/build/threex/THREEx.screenshot.js"></script>
+        <script src="./src/lib/build/threex/THREEx.FullScreen.js"></script>
+        <script src="./src/lib/build/threex/THREEx.WindowResize.js"></script>
+        <script src="./src/lib/build/threex/threex.dragpancontrols.js"></script>
+        <script src="./src/lib/shaders/CopyShader.js"></script>
+        <script src="./src/lib/shaders/DigitalGlitch.js"></script>
+        <script src="./src/lib/postprocessing/EffectComposer.js"></script>
+        <script src="./src/lib/postprocessing/RenderPass.js"></script>
+        <script src="./src/lib/postprocessing/MaskPass.js"></script>
+        <script src="./src/lib/postprocessing/ShaderPass.js"></script>
+        <script src="./src/lib/postprocessing/GlitchPass.js"></script>
+        <!--Mes fonctions-->
+        <script src="./src/js/Match.js"></script>
+        <script src="./src/js/Variables.js"></script>
+        <script src="./src/js/Draws.js"></script>
+        <script src="./src/js/Gameplay.js"></script>
+        <script src="./src/js/Collisions.js"></script>
+        <script src="./src/js/Score.js"></script>
+        <script src="./src/js/Actions.js"></script>
+        <script src="./src/js/Hub.js"></script>
+        <script src="./src/js/Audio.js"></script>
+        <script src="./src/js/Adversaire.js"></script>
+        <div class="container">
+            <h2 id="signature">Thibault Campagne</h2>
+            <h1 align="center">SG1, Au rapport !</h1>
+            <br><br><br>
+            <div>
+                <div>
+                    <fieldset>
+                        <legend>Introduction <i class="fa fa-check" style="font-size:24px;color:green"></i></legend>
+                        Ce projet a été réalisé dans le cadre du Master Technologies de l'Internet de l'UPPA, en cours de Simulation et Animation encadré par Mr Jobard.<br>
+                        Il consiste à réaliser une variante du Pong avec la bibliothèque Three.js en Javascript.
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <legend>Déroulement du jeu <i class="fa fa-check" style="font-size:24px;color:green"></i></legend>
+                        <ul>
+                            <li>Le jeu commence sur une simulation d'un hyperespace, permettant de masquer le chargement de la scène. L'hyperespace est une simple image déformée grâce aux keyframes en CSS</li>
+                            <li>
+                                Afin de faire apparaître la scène, il faut cliquer : 
+                                <ul>
+                                    <li>Soit sur le premier lien qui permet d'afficher la scène de jeu solo avec une seule caméra</li>
+                                    <li>Soit sur le deuxième lien qui permet d'afficher la scène avec deux caméras (écran scindé), ce qui permet d'affronter un autre joueur en face à face sur le même écran</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Les trois manches sont disponibles via un menu afin de simplifier les tests. Ce sont les mêmes modes de jeu avec quelques différences :
+                                <ul>
+                                    <li>La vitesse de la balle varie</li>
+                                    <li>Le symbole de l'advsersaire est différent</li>
+                                    <li>L'adversaire est plus rapide</li>
+                                </ul>    
+                            </li>
+                            <li>Chaque manche se joue en 3 points</li>
+                            <li>Chaque joueur dispose d'un bouclier</li>
+                        </ul>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <legend>Technologies Logicielles <i class="fa fa-check" style="font-size:24px;color:green"></i></legend>
+                        <ul>
+                            <li>Le jeu tourne dans un navigateur web. Quelques différences sont visibles selon le navigateur, mais également selon le Système d'Exploitation</li>
+                            <li>
+                                Liste des technologies utilisées
+                                <ul>
+                                    <li>Three.js → Développement en 3D dans un navigateur web</li>
+                                    <li>howler.js → Gestion de l'audio</li>
+                                    <li>Blender → Modélisation 3D des éléments complexes et extraction en Json</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Pour tester le projet, il faut impérativement l'héberger sur un serveur. Pour ma part, j'ai effectué deux tests
+                                <ul>
+                                    <li>Création d'un projet HTML sur NetBeans avec les sources existantes. NetBeans dispose d'un serveur localhost et permet donc de lancer les fichiers directement dans un navigateur</li>
+                                    <li>Copier / Coller le projet dans le dossier www du serveur wamp, puis lancer wamp, et y accéder via localhost</li>
+                                </ul>
+                            </li>
+                            <li>J'ai pu constater un très bon rendu sur le navigateur Google Chrome sur Windows, ainsi que sur Chromium sur Ubuntu. Le rendu est plus lent sur Mozilla Firefox, et l'animation d'hyperespace ne fonctionne pas sur ce navigateur en utilisant Ubuntu</li>
+                            <li>Étant administrateur du site web d'un expert comptable, il m'a autorisé à héberger ce projet sur son serveur OVH → <a href="http://www.ddc-conseils.fr/private/SIA/StargatePong/" target="_blank">Lien</a></li>
+                        </ul>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <legend>Fenêtre Graphique 3D <i class="fa fa-check" style="font-size:24px;color:green"></i></legend>
+                        <ul>
+                            <li>La scène s'adapte automatiquement à la taille de la fenêtre, en temps réel</li>
+                            <li>Il est possible d'afficher le jeu en plein écran avec la touche "f"</li>
+                            <li>Il est possible de prendre une capture d'écran avec la touche "p"</li>
+                        </ul>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <legend>Architecture Logicielle <i class="fa fa-check" style="font-size:24px;color:green"></i></legend>
+                        Le code Javascript a été séparé en plusieurs fichiers afin de faciliter le développement :
+                        <ul>
+                            <li>Actions.js → Gestion des différentes phases du jeu</li>
+                            <li>Adversaire.js → Gestion de l'IA de l'adversaire</li>
+                            <li>Audio.js → Gestion des sons</li>
+                            <li>Collisions.js → Gestion des collisions avec les objets de l'environnement (raquettes, murs, obstacles, jokers)</li>
+                            <li>Draws.js → Gestion des modélisations des objets 3D</li>
+                            <li>Gameplay.js → Gestion des touches interactives</li>
+                            <li>Hub.js → Gestion des affichages des messages</li>
+                            <li>Match.js → Gestion du rendu</li>
+                            <li>Score.js → Gestion des collisions avec le bouclier, et du score</li>
+                            <li>Variables.js → Toutes les variables globales du jeu. Beaucoup sont des booléens</li>
+                        </ul>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <legend>Graphisme <i class="fa fa-check" style="font-size:24px;color:green"></i></legend>
+                        <div class="col-lg-6">
+                            <iframe src="./rapport/html/scene.html" width="500" height="500"></iframe>
+                        </div>
+                        <div class="col-lg-6">
+                            <ul>
+                                <li>Le décor choisi est une référence à la célèbre série télévisée : Stargate SG1</li>
+                                <li>L'espace est une simple texture apliquée sur une sphère</li>
+                                <li>Le terrain de jeu dispose d'une texture mettant en avant le logo de l'équipe SG1, et est situé sur un vaisseau spatial</li>
+                                <li>L'ennemi est représenté par un symbole Égyptien, comme dans la série ou tous les protagonistes ennemis détiennent des tatouages de ces symboles</li>
+                                <li>L'effet de post-processing est l'effet "Glitch". Il n'est pas désactivable puisque il n'est réalisé qu'en chargeant la scène après la sortie de l'hyperespace.</li>
+                                <li>Les vaisseaux et la porte sont des modèles importés de Blender en Json</li>
+                                <li>L'animation réalisé sur la porte des étoiles est une modification du fichier "water-material.js" qui représentait avant cela, un océan très étendu.
+                                    J'ai dû le modifier afin d'enlever l'effet miroir, mais également pour ne l'appliquer que sur une petite surface. Cela rend bien sur Google Chrome, mais je constate
+                                    quelques imperfections sur Mozilla Firefox ainsi que Chromium</li>
+                                <li>Les textures des murs, raquettes, terrain sont de simples images retravaillées afin d'obtenir un meilleur rendu</li>
+                                <li>À gauche, c'est un rendu qui expose les principaux atouts graphiques du jeu. J'ai mis en avant le symbole de l'ennemi de la manche 1. De plus, j'active et désactive le bouclier à intervalle régulier, afin de montrer l'animation associée. L'OrbitControl est activé donc il est possible d'interagir avec cette scène (pour zoomer, il faut cliquer sur la molette et non pas scroller)</li>
+                            </ul>
+                        </div>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <legend>Dialogues avec l'utilisateur <i class="fa fa-check" style="font-size:24px;color:green"></i></legend>
+                        <div class="col-lg-6">
+                            <img src="./rapport/images/captureMessage.png" alt="Message de début de manche"/>
+                            <br><br>
+                            <img src="./rapport/images/captureMenu.JPG" alt="Menu"/>
+                            <br><br>
+                            <img src="./rapport/images/captureH.png" alt="Affichage des touches"/>
+                        </div>
+                        <div class="col-lg-6">
+                            <ul>
+                                <li>À chaque début de manche, un message s'affiche aisni qu'un compteur</li>
+                                <li>Les 3 manches étant disponibles, il n'y a pas de messages de transition entre les niveaux</li>
+                                <li>La touche h permet d'afficher le récapitulatif des raccourcis clavier disponibles</li>
+                            </ul>
+                        </div>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <legend>Points de vue caméra <i class="fa fa-check" style="font-size:24px;color:green"></i></legend>
+                        <ul>
+                            <li>
+                                Comme demandé dans le cahier des charges, 3 vues caméra sont implémentées
+                                <ul>
+                                    <li>Touche 0 → Vue fixe par rapport au plateau</li>
+                                    <li>Touche 1 → Vue attachée à la raquette</li>
+                                    <li>Touche 2 → Vue du dessus</li>
+                                </ul>
+                            </li>
+                            <li>Pour le mode en écran scindé, les deux caméras sont attachées à chaque raquette</li>
+                        </ul>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <legend>Gestion des collisions <i class="fa fa-check" style="font-size:24px;color:green"></i></legend>
+                        <ul>
+                            <li>Au début du projet, j'ai utilisé le Raycaster pour gérer les collisions. Puis, j'ai trouvé qu'il n'était pas forcément pertinent de l'utiliser
+                                pour un jeu à l'environnement aussi fermé.</li>
+                            <li>Pour la détection de toutes les collisions, j'ai donc développé plusieurs fonctions. Leurs objectifs est de détecter la position de la balle et des objets
+                                testés, tout en prenant en compte le rayon de la balle et la profondeur de ces objets, afin de détecter une collision</li>
+                            <li>Les traitement effectués dans ces fonctions sont des traitement que je devais quand même effectuer avec le raycaster, d'ou mon choix de le retirer</li>
+                        </ul>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <legend>Dynamique <i class="fa fa-check" style="font-size:24px;color:green"></i></legend>
+                        <ul>
+                            <li>La vitesse de la balle augmente au cours des échanges. De plus, en fonction du niveau, elle commence à une certaine vitesse</li>
+                            <li>
+                                La direction de la balle peut être influencée en fonction du rebond sur la raquette
+                                <ul>
+                                    <li>
+                                        Si la raquette est immobile, l'axe de la balle varie en fonction de l'endroit ou il y a collision
+                                        <ul>
+                                            <li>Pile au milieu → la balle part sur un axe droit</li>
+                                            <li>À droite → en fonction de l'éloignement du centre de la raquette, la balle a un axe qui part plus ou moins à droite </li>
+                                            <li>À gauche → même gestion qu'à droite mais vers la gauche</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        Si la raquette est en déplacement, l'axe de la balle peut varier de façon plus importante
+                                        <ul>
+                                            <li>Si la raquette se déplace vers la gauche, la balle part vers la gauche</li>
+                                            <li>Si la raquette se déplace vers la droite, la balle part vers la droite</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>L'inertie est implémentée, elle est réalisée quand le joueur décide de stopper la raquette. Dans ce cas-là, la raquette ralentit 
+                                plus doucement. L'inertie est activable / désactivable en pressant la lettre G</li>
+                        </ul>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <legend>Jokers <i class="fa fa-check" style="font-size:24px;color:green"></i></legend>
+                        <ul>
+                            <li>Des jokers peuvent être appelés avec la touche J</li>
+                            <li>
+                                Il y en a deux types :
+                                <ul>
+                                    <li>Un joker santé qui recharge le bouclier si besoin. Il est facilement reconnaissable avec sa croix rouge</li>
+                                    <li>Un joker qui rallonge la raquette. La texture est le logo de la seconde équipe Stargate, pour montrer que du "renfort" est appelé</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <legend>Intelligence artificielle de l'adversaire <i class="fa fa-check" style="font-size:24px;color:green"></i></legend>
+                        L'intelligence artificielle est très basique. La raquette de l'adversaire ne fait que suivre la balle à une vitesse moins importante. Cette vitesse augmente au fil des niveaux
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <legend>Musiques et sons <i class="fa fa-check" style="font-size:24px;color:green"></i></legend>
+                        <ul>
+                            <li>Une musique de fond qui est une compilation de celles entendues dans la série est en fond par défaut. Elle est désactivable en cliquant sur 
+                                l'icône de son en haut à droite de l'écran</li>
+                            <li>
+                                Des sons sont activées sur certaines collisions
+                                <table>
+                                    <tr><td>○ Son sur collision avec une raquette → </td><td><audio src="./src/medias/sounds/sonCollision.wav" controls>Balise audio</audio></td></tr>
+                                    <tr><td>○ Son sur collision avec un bouclier → </td><td><audio src="./src/medias/sounds/sonBouclier.mp3" controls>Balise audio</audio></td></tr>
+                                    <tr><td>○ Son sur un  point marqué → </td><td><audio src="./src/medias/sounds/sonScore.mp3" controls>Balise audio</audio></td></tr>
+                                </table>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <legend>Triche <i class="fa fa-check" style="font-size:24px;color:green"></i></legend>
+                        <ul>
+                            <li>Touche i → Vous devenez invincible, la balle est perçue comme une pichenette contre votre bouclier surpuissant</li>
+                            <li>Touche j → Vous appelez un joker, c'est vous qui commandez après tout</li>
+                            <li>Touche k → D'un seul souffle, le bouclier de votre pire ennemi s'évapore</li>
+                            <li>Touche Espace → Vous arrêtez le temps. À la base, cette fonctionnalité était prévu pour mettre sur pause, mais autant en profiter quand on veut juste repositionner sa raquette au bon endroit !</li>
+                        </ul>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <legend>Les petits plus ! <i class="fa fa-check" style="font-size:24px;color:green"></i></legend>
+                        <ul>
+                            <li>Le jeu détient beaucoup de références à la série et il est plaisant à regarder quand on en est fan</li>
+                            <li>Si on ne connaît pas la série, le jeu reste tout de même agréable à regarder</li>
+                            <li>De par son développement, le jeu est facile à modifier. En effet, même si cela a été long à comprendre et à mettre en place, 
+                                l'utilisation de simples booléens sur toutes les fonctionnalités permet de pouvoir apporter de nouvelles choses facilement</li>
+                            <li>En petit bonus, afin de voir ce que rendait deux caméras sur une même scène, j'ai réalisé un écran scindé pour pouvoir jouer à deux. Ce n'est pas forcément 
+                                magnifique, mais cela m'a permis de comprendre comment utiliser deux vues différentes sur une même scène</li>
+                        </ul>
+                        <center><img src="./rapport/images/captureMulti.png" alt="Capture d'écran du mode multi"/></center>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <legend>Conclusion <i class="fa fa-check" style="font-size:24px;color:green"></i></legend>
+                        Ce projet a été très instructif pour moi qui suis passionné par le développement web. J'ai beaucoup appris sur une technologie que je trouve assez puissante. Mon seul regret est de ne pas avoir codé en orienté objet. En effet, j'ai commencé
+                        dès le début à développé le jeu en séquentiel, et quand je me suis rendu compte qu'il était possible de faire du développement orienté objet en Javascript, il était trop tard pour reculer.
+                        Je pense que cela m'aurait permis d'optimiser au maximum mon jeu.<br>
+                        Ayant beaucoup hésité sur le décor, et n'étant pas parfaitement satisfait de mon rendu, j'ai appris qu'il était très difficile de réaliser des jeux finis, il y a toujours des améliorations possibles.
+                        <br><br>
+                        <center><iframe src="./src/html/hyperSpace.html" style="width: 50%; height: 10%;"></iframe>
+                            <br><br>
+                            <a href="./pong3D.html">Et maintenant, trêve de bavadarges, à vous de jouer !</a></center>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

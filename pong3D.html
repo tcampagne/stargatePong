@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Stargate Pong</title>
+        <meta charset="UTF-8">
+        <link rel="SHORTCUT ICON" href="./src/medias/images/favicon.ico" />
+        <link  href="./src/css/style.css" rel="stylesheet"/>
+    </head>
+    <body onkeyup="stopper(event)" onkeydown="deplacer(event)">
+        <!--LIBRAIRIES-->
+        <script src="./src/lib/build/three.min.js"></script>
+        <script src="./src/lib/build/dat.gui.js"></script>
+        <script src="./src/lib/build/OrbitControls.js"></script>
+        <script src="./src/lib/build/stats.min.js"></script>
+        <script src="./src/lib/build/Detector.js"></script>
+        <script src="./src/lib/build/water-material.js"></script>
+        <script src="./src/lib/howler.js"></script>
+        <script src="./src/lib/build/threex/THREEx.screenshot.js"></script>
+        <script src="./src/lib/build/threex/THREEx.FullScreen.js"></script>
+        <script src="./src/lib/build/threex/THREEx.WindowResize.js"></script>
+        <script src="./src/lib/build/threex/threex.dragpancontrols.js"></script>
+        <script src="./src/lib/shaders/CopyShader.js"></script>
+        <script src="./src/lib/shaders/DigitalGlitch.js"></script>
+        <script src="./src/lib/postprocessing/EffectComposer.js"></script>
+        <script src="./src/lib/postprocessing/RenderPass.js"></script>
+        <script src="./src/lib/postprocessing/MaskPass.js"></script>
+        <script src="./src/lib/postprocessing/ShaderPass.js"></script>
+        <script src="./src/lib/postprocessing/GlitchPass.js"></script>
+        <!--Mes fonctions-->
+        <script src="./src/js/Match.js"></script>
+        <script src="./src/js/Variables.js"></script>
+        <script src="./src/js/Draws.js"></script>
+        <script src="./src/js/Gameplay.js"></script>
+        <script src="./src/js/Collisions.js"></script>
+        <script src="./src/js/Score.js"></script>
+        <script src="./src/js/Actions.js"></script>
+        <script src="./src/js/Hub.js"></script>
+        <script src="./src/js/Audio.js"></script>
+        <script src="./src/js/Adversaire.js"></script>
+
+        <iframe src="./src/html/hyperSpace.html" id="hyperspace" scrolling="no" frameborder="0" style="position: absolute; left: 0%; height: 100%; width: 100%;"></iframe>
+        <div id="container"></div>
+        <div id="scoreAdversaire" style="display: none">
+
+        </div>
+        <div id="votreScore" style="display: none">
+
+        </div>
+        <div id="son" onclick="gestionSon()" style="display: block">
+        </div>
+        <div id="sortieHyperSpace" style="display:block">
+        </div>
+        <p id="sortirSeul" style="display:block"><a href="#" onclick="chargerRendu()">Sortir de l'HyperEspace</a></p>
+        <p id="sortirAmi" style="display:block"><a href="#" onclick="chargerRenduMulti()">Sortir de l'HyperEspace et affronter un ami en écran scindé</a></p>
+        <p id="info" style="display:block">Pour consulter les commandes du vaisseau, appuyez sur la touche H !</p>
+        <div id="menu" style="display: none">
+            <table class="tableHub">
+                <tr>
+                    <td id="manche1"><a href="#">MANCHE 1</a></td>
+                </tr>
+                <tr>
+                    <td id="manche2"><a href="#">MANCHE 2</a></td>
+                </tr>
+                <tr>
+                    <td id="manche3"><a href="#">MANCHE 3</a></td>
+                </tr>
+            </table>
+        </div>
+        <div id="recapTouches" style="display:none">
+            <table class="tableRecapTouches">
+                <tr><td>F</td><td>:</td><td>Plein Ecran</td></tr>
+                <tr><td>P</td><td>:</td><td>Capture d'écran</td></tr>
+                <tr><td>J</td><td>:</td><td>Joker Suivant</td></tr>
+                <tr><td>0</td><td>:</td><td>Vue Fixe</td></tr>
+                <tr><td>1</td><td>:</td><td>Vue Raquette</td></tr>
+                <tr><td>2</td><td>:</td><td>Vue du Général</td></tr>
+                <tr><td>G</td><td>:</td><td>Inertie On/Off</td></tr>
+                <tr><td>I</td><td>:</td><td>Invincible On/Off</td></tr>
+                <tr><td>K</td><td>:</td><td>Honteuse feinte</td></tr>
+                <tr><td>Spacebar</td><td>:</td><td>Arrêter le temps</td></tr>
+            </table>
+        </div>
+        <div id="compteur" style="display:none"></div>
+        <script language="JavaScript">
+            dureeCompteur = "0";
+            t();
+        </script>
+        <script>
+            initMatch();
+            gestionHub();
+        </script>
+    </body>
+</html>
